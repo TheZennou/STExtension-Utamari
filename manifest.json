@@ -1,0 +1,11 @@
+{
+    "display_name": "Utamari",
+    "loading_order": 7,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Zennou",
+    "version": "1.0.0",
+    "homePage": "https://github.com/TheZennou/STExtension-Utamari"
+}

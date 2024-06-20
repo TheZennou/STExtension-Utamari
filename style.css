@@ -1,0 +1,80 @@
+#persistent_happy_mode_menu {
+  width: 225px;
+  max-width: 90svw;
+  position: absolute;
+  z-index: 9999;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(-100%);
+  text-align: center;
+  box-shadow: 0px 0px 14px var(--black70a);
+  border: 1px solid var(--SmartThemeBorderColor);
+  padding: 10px;
+  background-color: var(--SmartThemeBlurTintColor);
+  border-radius: 10px;
+  max-height: 90svh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#persistent_happy_mode_menu h3 {
+  margin-top: 0;
+}
+
+
+#persistent_happy_mode_menu label {
+  margin-right: 5px;
+}
+
+#happy_mode_checkbox {
+  cursor: pointer;
+}
+
+.menu-content { 
+display: flex; flex-direction: column; 
+gap: 10px; 
+} 
+.menu-item { 
+display: flex; 
+justify-content: space-between; 
+align-items: center; 
+} 
+.position-inputs { 
+display: flex; 
+gap: 10px; 
+} 
+.input-group { 
+display: flex; 
+align-items: center; 
+gap: 5px; 
+} 
+.input-group input { 
+width: 50px; 
+display: block;
+cursor: text;
+background-color: var(--black30a);
+border: 1px solid var(--SmartThemeBorderColor);
+border-radius: 0 0 5px 5px;
+padding: 2px;
+padding-left: 1em;
+text-align: center;
+} 
+#apply_position { 
+align-self: flex-end;
+    color: var(--SmartThemeBodyColor);
+    background-color: var(--black50a);
+    border: 1px solid var(--SmartThemeBorderColor);
+    border-radius: 5px;
+    padding: 3px 5px;
+    width: min-content;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+} 
+}
