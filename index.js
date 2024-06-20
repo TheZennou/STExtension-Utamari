@@ -35,7 +35,6 @@ function updateHappyMode() {
   }
 }
 
-// Function to check the character name and enable/disable happy mode
 function checkCharacterName() {
   const characterName = $('.ch_name .name_text').text();
   console.log('Checking character name. Current name:', characterName);
@@ -50,42 +49,38 @@ function checkCharacterName() {
     updateHappyMode();
   }
 }
+
 function toggleDescriptionSections(isHappyMode) {
-    const descriptionTextarea = $('#description_textarea');
-    let descriptionText = descriptionTextarea.val();
+  const descriptionTextarea = $('#description_textarea');
+  let descriptionText = descriptionTextarea.val();
 
-    // Remove existing {{// and }}
-    descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
-    descriptionText = descriptionText.replace(/\s*}}/g, '');
+  // Remove existing {{// and }}
+  descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
+  descriptionText = descriptionText.replace(/\s*}}/g, '');
 
-    if (isHappyMode) {
-        descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
-        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
-    } else {
-        descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
-        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
-    }
+  if (isHappyMode) {
+    descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
+    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
+  } else {
+    descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
+    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
+  }
 
-    // Update the textarea value
-    descriptionTextarea.val(descriptionText);
+  descriptionTextarea.val(descriptionText);
 
-    // Trigger the input event to simulate user editing
-    descriptionTextarea.trigger('input');
-
-    // If there's a specific save function or event, trigger it here
-    // For example, if there's a save button:
-    // $('#create_button').click();
-    
-    // Or if there's a specific save function:
-    // saveCharacterDebounced();
+  // Trigger the input event to simulate user editing
+  descriptionTextarea.trigger('input');
+  
 }
+
 jQuery(function () {
   addHappyModeToggle();
   addHappyModeMessageButton();
+  updateHappyMode();
   
   setInterval(checkCharacterName, 5000);
   
