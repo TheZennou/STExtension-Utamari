@@ -50,27 +50,34 @@ function checkCharacterName() {
   }
 }
 function toggleDescriptionSections(isHappyMode) {
-    const descriptionTextarea = $('#description_textarea');
-    let descriptionText = descriptionTextarea.val();
+  const descriptionTextarea = $('#description_textarea');
+  let descriptionText = descriptionTextarea.val();
+  const excludedSection = descriptionText.match(/{{\/\/[\s\S]*?}}/)[0];
 
-    descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
-    descriptionText = descriptionText.replace(/\s*}}/g, '');
+  // Remove the excluded section from the description text
+  descriptionText = descriptionText.replace(/{{\/\/[\s\S]*?}}/, '');
 
-    if (isHappyMode) {
-        descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
-        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
-    } else {
-        descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
-        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
-        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
-    }
+  descriptionText = descriptionText.replace(/^\n+/, '');
 
-    descriptionTextarea.val(descriptionText);
-    descriptionTextarea.trigger('input');
+  descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
+  descriptionText = descriptionText.replace(/\s*}}/g, '');
 
+  if (isHappyMode) {
+    descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
+    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
+  } else {
+    descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
+    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
+    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
+  }
+
+  descriptionText = excludedSection + '\n\n' + descriptionText;
+
+  descriptionTextarea.val(descriptionText);
+  descriptionTextarea.trigger('input');
 }
 jQuery(function () {
   addHappyModeToggle();
