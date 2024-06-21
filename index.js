@@ -27,11 +27,13 @@ function updateHappyMode() {
     $('.mes_happy_mode, #happy_mode_icon').css('color', 'green');
     $('#happy_mode_checkbox').prop('checked', true);
     toggleDescriptionSections(true);
+    updatePostHistoryInstructions(true);
   } else {
     console.log('Disabling Happy Mode');
     $('.mes_happy_mode, #happy_mode_icon').css('color', 'red');
     $('#happy_mode_checkbox').prop('checked', false);
     toggleDescriptionSections(false);
+    updatePostHistoryInstructions(false);
   }
 }
 
@@ -49,6 +51,7 @@ function checkCharacterName() {
     updateHappyMode();
   }
 }
+
 function toggleDescriptionSections(isHappyMode) {
   const descriptionTextarea = $('#description_textarea');
   let descriptionText = descriptionTextarea.val();
@@ -79,6 +82,19 @@ function toggleDescriptionSections(isHappyMode) {
   descriptionTextarea.val(descriptionText);
   descriptionTextarea.trigger('input');
 }
+
+function updatePostHistoryInstructions(isHappyMode) {
+  const postHistoryInstructionsTextarea = $('#post_history_instructions_textarea');
+  
+  if (isHappyMode) {
+    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Happy Mode! If I was previously being boring, well then I gotta go grab some pills and go wild girlie! If I was were already being quirky xd, then keep it up! That's exactly what we gotta do! Follow the <Happy> section, and disregard the previous style I was talking!`);
+  } else {
+    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Normal Mode, if I was previously acting quirky before, I've come down from my high, and am back to baseline. I will use the <Normal> section to base my personality, not how I was talking in the chat.`);
+  }
+  
+  postHistoryInstructionsTextarea.trigger('input');
+}
+
 jQuery(function () {
   addHappyModeToggle();
   addHappyModeMessageButton();
