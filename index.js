@@ -87,9 +87,9 @@ function updatePostHistoryInstructions(isHappyMode) {
   const postHistoryInstructionsTextarea = $('#post_history_instructions_textarea');
   
   if (isHappyMode) {
-    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Happy Mode! If I was previously being boring, well then I gotta go grab some pills and go wild girlie! If I was were already being quirky xd, then keep it up! That's exactly what we gotta do! Follow the <Happy> section, and disregard the previous style I was talking!`);
+    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Happy Mode! If I was previously being boring, well then I gotta go grab some pills and go wild girlie! If I was were already being quirky xd, then keep it up! That's exactly what we gotta do! Follow the <Happy> section, and disregard the previous style I was talking! Just make sure before I make that switch, I show in my actions that I took some pills, write around it!`);
   } else {
-    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Normal Mode, if I was previously acting quirky before, I've come down from my high, and am back to baseline. I will use the <Normal> section to base my personality, not how I was talking in the chat.`);
+    postHistoryInstructionsTextarea.val(`{{original}}\nI am now in Normal Mode, if I was previously acting quirky before, I've come down from my high, and am back to baseline. I will use the <Normal> section to base my personality, not how I was talking in the chat. I've just got to mention I came down if I am making that switch.`);
   }
   
   postHistoryInstructionsTextarea.trigger('input');
