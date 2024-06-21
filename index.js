@@ -49,38 +49,32 @@ function checkCharacterName() {
     updateHappyMode();
   }
 }
-
 function toggleDescriptionSections(isHappyMode) {
-  const descriptionTextarea = $('#description_textarea');
-  let descriptionText = descriptionTextarea.val();
+    const descriptionTextarea = $('#description_textarea');
+    let descriptionText = descriptionTextarea.val();
 
-  descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
-  descriptionText = descriptionText.replace(/\s*}}/g, '');
+    descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
+    descriptionText = descriptionText.replace(/\s*}}/g, '');
 
-  if (isHappyMode) {
-    descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
-    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
-    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
-    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
-  } else {
-    descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
-    descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
-    descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
-    descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
-  }
+    if (isHappyMode) {
+        descriptionText = descriptionText.replace(/^(\s*)<Normal>/gm, '$1{{// <Normal>');
+        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>/gm, '$1</Normal>}}');
+        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Happy>/gm, '$1<Happy>');
+        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>}}/gm, '$1</Happy>');
+    } else {
+        descriptionText = descriptionText.replace(/^(\s*)<Happy>/gm, '$1{{// <Happy>');
+        descriptionText = descriptionText.replace(/^(\s*)<\/Happy>/gm, '$1</Happy>}}');
+        descriptionText = descriptionText.replace(/^(\s*){{\/\/\s*<Normal>/gm, '$1<Normal>');
+        descriptionText = descriptionText.replace(/^(\s*)<\/Normal>}}/gm, '$1</Normal>');
+    }
 
-  descriptionTextarea.val(descriptionText);
+    descriptionTextarea.val(descriptionText);
+    descriptionTextarea.trigger('input');
 
-  descriptionTextarea.trigger('input');
-  
 }
-
 jQuery(function () {
   addHappyModeToggle();
   addHappyModeMessageButton();
-  
-  // Comment out the <Happy> section by default
-  toggleDescriptionSections(false);
   
   setInterval(checkCharacterName, 5000);
   
