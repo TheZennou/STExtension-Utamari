@@ -54,7 +54,6 @@ function toggleDescriptionSections(isHappyMode) {
   const descriptionTextarea = $('#description_textarea');
   let descriptionText = descriptionTextarea.val();
 
-  // Remove existing {{// and }}
   descriptionText = descriptionText.replace(/{{\/\/\s*/g, '');
   descriptionText = descriptionText.replace(/\s*}}/g, '');
 
@@ -72,7 +71,6 @@ function toggleDescriptionSections(isHappyMode) {
 
   descriptionTextarea.val(descriptionText);
 
-  // Trigger the input event to simulate user editing
   descriptionTextarea.trigger('input');
   
 }
@@ -80,7 +78,9 @@ function toggleDescriptionSections(isHappyMode) {
 jQuery(function () {
   addHappyModeToggle();
   addHappyModeMessageButton();
-  updateHappyMode();
+  
+  // Comment out the <Happy> section by default
+  toggleDescriptionSections(false);
   
   setInterval(checkCharacterName, 5000);
   
